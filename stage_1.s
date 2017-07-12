@@ -25,6 +25,8 @@ stage_1:
 	int $0x10
 	jmp stage_1
 
+.org 446
+
 .org 510
 .byte 0x55
 .byte 0xaa
