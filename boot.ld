@@ -1,4 +1,4 @@
-ENTRY(mbr_boot)
+ENTRY(stage_1_prelude)
 
 SECTIONS
 {

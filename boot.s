@@ -1,6 +1,9 @@
 .code16
 
-.global mbr_boot
+.global stage_1_prelude
+
+stage_1_prelude:
+	jmp $0x0000, $(0x7c00 + mbr_boot)
 
 mbr_boot:
 	movb $0x0e, %ah
