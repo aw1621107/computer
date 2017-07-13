@@ -1,4 +1,4 @@
-ENTRY(stage_1_prelude)
+ENTRY(begin_stage_1_relocation)
 
 SECTIONS
 {

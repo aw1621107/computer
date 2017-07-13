@@ -1,24 +1,21 @@
 .code16
 
-.global stage_1_prelude
+.global begin_stage_1_relocation
 
-stage_1_prelude:
-	jmp $0x0000, $(0x7c00 + relocate_stage_1)
-
-relocate_stage_1:
+begin_stage_1_relocation:
 	cld
 	movw $0x0060, %ax
 	movw %ax, %es
 	xorw %di, %di
 
 	movw %di, %ds
-	movw $(0x7c00 + end_stage_1_prelude), %si
+	movw $(0x7c00 + end_stage_1_relocation), %si
 
-	movw $(510 - (end_stage_1_prelude - stage_1_prelude)), %cx
+	movw $(510 - (end_stage_1_relocation - begin_stage_1_relocation)), %cx
 	rep movs
 
-	jmp $0x0060, $(stage_1 - end_stage_1_prelude)
-end_stage_1_prelude:
+	jmp $0x0060, $(stage_1 - end_stage_1_relocation)
+end_stage_1_relocation:
 
 stage_1:
 	movb $0x0e, %ah
