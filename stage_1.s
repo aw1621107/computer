@@ -12,12 +12,13 @@ relocate_stage_1:
 	xorw %di, %di
 
 	movw %di, %ds
-	movw $(0x7c00 + stage_1), %si
+	movw $(0x7c00 + end_stage_1_prelude), %si
 
-	movw $(510 - (stage_1 - stage_1_prelude)), %cx
+	movw $(510 - (end_stage_1_prelude - stage_1_prelude)), %cx
 	rep movs
 
-	jmp $0x0060, $0x0000
+	jmp $0x0060, $(stage_1 - end_stage_1_prelude)
+end_stage_1_prelude:
 
 stage_1:
 	movb $0x0e, %ah
