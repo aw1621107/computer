@@ -18,6 +18,12 @@ begin_stage_1_relocation:
 end_stage_1_relocation:
 
 stage_1:
+	movw %cs, %ax
+	movw %ax, %ds
+	movw %ax, %es
+	movw %ax, %ss
+	movw $0xfff0, %sp
+
 	movb $0x0e, %ah
 	movb $'!', %al
 	int $0x10
