@@ -3,6 +3,7 @@
 .global begin_stage_1_relocation
 
 begin_stage_1_relocation:
+	cli
 	cld
 	movw $0x0060, %ax
 	movw %ax, %es
@@ -23,6 +24,8 @@ stage_1:
 	movw %ax, %es
 	movw %ax, %ss
 	movw $0xfff0, %sp
+
+	sti
 
 	movb $0x0e, %ah
 	movb $'!', %al
