@@ -45,6 +45,8 @@ print_asciz_string_done:
 string_section_begin:
 stage_1_failure_message:
 .asciz "Stage 1 failed. Please reboot the computer."
+reloc_done_message:
+.asciz "Reloc/stack done, interrupts enabled"
 string_section_end:
 
 stage_1:
@@ -56,9 +58,12 @@ stage_1:
 
 	sti
 
+	print reloc_done_message
+
 	movb $0x0e, %ah
 	movb $'!', %al
 	int $0x10
+
 	jmp stage_1
 
 .org 446
