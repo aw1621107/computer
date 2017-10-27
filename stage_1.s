@@ -43,6 +43,8 @@ print_asciz_string_done:
 	ret
 
 string_section_begin:
+stage_1_failure_message:
+.asciz "Stage 1 failed. Please reboot the computer."
 string_section_end:
 
 stage_1:
@@ -60,6 +62,13 @@ stage_1:
 	jmp stage_1
 
 .org 446
+
+stage_1_failed:
+	print stage_1_failure_message
+stage_1_failed_loop:
+	cli
+	hlt
+	jmp stage_1_failed_loop
 
 .org 510
 .byte 0x55
